@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            showTime()
+        }
+
+        function showTime() {
+            var myDate = new Date(),
+                year = myDate.getFullYear(),
+                month = myDate.getMonth() + 1,
+                date = myDate.getDate(),
+                day = myDate.getDay(),
+                hour = myDate.getHours(),
+                minute = myDate.getMinutes(),
+                second = myDate.getSeconds();
+
+            minute = checkTime(minute);
+            second = checkTime(second)
+            //将数字转化为星期X，定义一个数组
+            var weekday = new Array(7);
+            weekday[0] = '星期日'
+            weekday[1] = '星期一'
+            weekday[2] = '星期二'
+            weekday[3] = '星期三'
+            weekday[4] = '星期四'
+            weekday[5] = '星期五'
+            weekday[6] = '星期六'
+            document.getElementById('show').innerHTML = year + '年' + month + '月' + date + '日' + '<br>' + weekday[
+                day] + hour + ':' + minute + ':' + second
+            //每500毫秒调用一次showTime函数
+            setTimeout(showTime, 500)
+        }
+
+        //处理数字位数
+        function checkTime(i) {
+            if (i < 10) {
+                i = '0' + i
+            }
+            return i
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="content1">
+        <div id="show">显示时间的位置</div>
+    </div>
+</body>
+
+</html>

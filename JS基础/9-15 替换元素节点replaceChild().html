@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>无标题文档</title>
+</head>
+
+<body>
+
+
+  <div>
+    <b id="oldnode">JavaScript</b>是一个很常用的技术，为网页添加动态效果。</div>
+  <a href="javascript:replaceMessage()"> 将加粗改为斜体</a>
+
+  <script type="text/javascript">
+    function replaceMessage() {
+      var newI = document.createElement('i');
+      var oldB = document.getElementById('oldnode');
+      newI.innerHTML = oldB.innerHTML;
+      oldB.parentNode.replaceChild(newI, oldB);
+    }
+  </script>
+
+</body>
+
+</html>
+
+<!--
+    补充函数 replaceMessage() 代码，实现将 b 标签替换成 i 标签。
+    语法:node.replaceChild (newnode,oldnew ) 
+        newnode : 必需，用于替换 oldnew 的对象。 
+        oldnew : 必需，被 newnode 替换的对象。
+    DOM节点的替换过程：
+    （1）创建新的节点；
+    （2）找到旧的节点；
+    （3）站在父节点的角度，使用replaceChild(新,旧)函数来替换。
+-->

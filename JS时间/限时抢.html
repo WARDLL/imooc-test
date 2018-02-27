@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            showTime()
+        }
+
+        function showTime() {
+            //结束时间
+            var endTime = new Date('2018/1/10,19:26:00'),
+                //当前时间
+                nowTime = new Date(),
+                leftTime = parseInt((endTime.getTime() - nowTime.getTime()) / 1000),
+                //天数换算
+                day = parseInt(leftTime / (24 * 60 * 60)),
+                //小时换算
+                hour = parseInt(leftTime / (60 * 60) % 24),
+                //分钟换算
+                minute = parseInt(leftTime / 60 % 60),
+                //秒数取模
+                second = parseInt(leftTime % 60);
+
+            document.getElementById('LeftTime').innerHTML = day + '天' + hour + '小时' + minute + '分钟' + second +
+                '秒';
+            if (leftTime <= 0) {
+                document.getElementById('LeftTime').innerHTML = '团购结束'
+            }
+
+            setTimeout(showTime, 500);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div>还剩
+            <span id="LeftTime"></span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮1" id="btn1" onclick="showMes1()">
+        <input type="button" value="按钮2" id="btn2">
+        <input type="button" value="按钮3" id="btn3">
+        <input type="button" value="按钮4" id="btn4">
+        <input type="button" value="按钮5" id="btn5">
+    </div>
+    <script>
+        //HTML事件处理程序
+        function showMes1(){
+            alert('这是通过HTML事件处理程序添加的')
+        }
+
+
+        //DOM0级事件处理程序
+        var btn2=document.getElementById('btn2');
+        //给btn2添加onclick属性
+        btn2.onclick=function(){
+            alert('这是通过DOM0级事件处理程序添加的')
+        }
+        //删除onclick属性
+        //btn2.onclick=null;
+
+
+        //DOM2级事件处理程序
+        var btn3=document.getElementById('btn3');
+        function showMes3(){
+            alert('这是通过DOM2级事件处理程序添加的')
+        }
+       //添加事件监听程序 所有的事件不能加'on' 建议使用false（冒泡）兼容各种浏览器  
+        btn3.addEventListener('click',showMes3,false)
+        btn3.addEventListener('click',function(){
+            //this表示引用被触发的元素
+            alert(this.value)
+        }
+        ,false)
+        //删除事件监听程序 传入参数必须与添加时参数相同
+        //btn3.removeEventListener('click',showMes3,false)
+
+        //IE事件处理程序
+        var btn4=document.getElementById('btn4');
+        function showMes4(){
+            alert('这是通过IE事件处理程序添加的')
+        }
+        btn4.attachEvent('onclick',showMes4);
+        //btn4.detachEvent('onclick',showMes4);
+
+        //跨浏览器的事件处理程序
+        var btn5=document.getElementById('btn5');
+        function showMes5(){
+            alert('跨浏览器的事件处理程序')
+        }
+        //封装
+        var eventUtil={
+            //添加句柄
+            //给谁添加，添加的事件类型,句柄（触发操作）
+            addHandler:function(element,type,handler){
+                //能力检测
+                //如果支持addEventListener
+                if(element.addEventListener){
+                    element.addEventListener(type,handler,false);
+                    //如果支持attachEvent
+                }else if(element.attachEvent){
+                    element.attachEvent('on'+type,handler)
+                    //老版本不支持DOM2级也不支持IE，只能用DOM0级
+                }else {
+                    //element.onclick====element['onclcik']
+                    element['on'+type]=handler;
+                }
+            },
+            //删除句柄
+            removeHandler:function(element,type,handler){
+                //能力检测
+                //如果支持addEventListener
+                if(element.removeEventListener){
+                    element.removeEventListener(type,handler,false);
+                    //如果支持attachEvent
+                }else if(element.detachEvent){
+                    element.detachEvent('on'+type,handler)
+                    //老版本不支持DOM2级也不支持IE，只能用DOM0级
+                }else {
+                    //element.onclick====element['onclcik']
+                    element['on'+type]=null;
+                }
+            }
+        }
+        eventUtil.addHandler(btn5,'click',showMes5)
+    </script>
+</body>
+</html>

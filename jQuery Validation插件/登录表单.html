@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <style>
+        body {
+            font-size: 36px;
+            line-height: 1.6;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        label {
+            display: inline-block;
+            min-width: 140px
+        }
+
+        label.error {
+            margin-left: 10px;
+            color: red;
+        }
+
+        input,
+        button {
+            line-height: 35px;
+            border: 1px solid #999999;
+            min-width: 180px;
+        }
+
+        input.error {
+            border: 1px solid red
+        }
+
+        input[type=submit],
+        button {
+            margin-top: 20px;
+            font-size: 36px;
+            padding: 10px 0
+        }
+    </style>
+</head>
+
+<body>
+    <form id="demoForm">
+        <fieldset>
+            <legend>用户登录</legend>
+            <p>
+                <label for="username">用户名</label>
+                <input type="text" name="username" id="1">
+            </p>
+
+            <p>
+                <label for="password">密码</label>
+                <input type="password" name="password" id="password">
+            </p>
+
+            <p>
+                <label for="confirm-password">确认密码</label>
+                <input type="password" name="confirm-password">
+            </p>
+
+            <p>
+                <input type="submit" id="check" value="检查表单">
+            </p>
+
+            <p>
+                <input type="submit" value="登录">
+            </p>
+
+        </fieldset>
+    </form>
+
+    <script src="./js/登录表单.js"></script>
+</body>
+</html>
+
+<!-- 用户名密码均为2-16位，必填 -->

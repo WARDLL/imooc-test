@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://cruxf.github.io/JavaScriptPractice/JsNode.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>JavaScript节点的操作</title>
+		<style>
+			td{
+				text-align: center;
+			}
+			input{
+				margin: 10px 0 0 183px;
+			}
+		</style>
+		
+		<script>
+			//1、鼠标移动改变背景颜色，可以通过给每行绑定鼠标移上事件来改变所在行背景色
+			 function changeBack(){
+				var tr = document.getElementsByTagName("tr");
+				var tr1 = document.getElementsByTagName("tr")[0];
+				for(var i=0;i<tr.length;i++){
+					tr[i].onmouseover=function(){
+						this.style.backgroundColor="#ccc";
+					}
+					tr[i].onmouseout=function(){
+						this.style.backgroundColor="#fff";
+					}
+				}
+				tr1.onmouseover = function(){
+					this.style.backgroundColor = "#fff";
+				}
+			}
+			
+			//2、编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点
+			var num = 2;
+			function add(){
+				num++;				
+				var tr = document.createElement("tr");
+				var xh = document.createElement("td");
+				var xm = document.createElement("td");
+				xh.innerHTML = "xh00"+num;
+				xm.innerHTML = "樱木花道"+(num-2);
+				var del = document.createElement("td");
+				del.innerHTML = "<a href='javascript:;' onclick='del(this)'>删除</a>";
+				var tab = document.getElementById("tab");
+				tab.appendChild(tr);
+				tr.appendChild(xh);
+				tr.appendChild(xm);
+				tr.appendChild(del);
+				changeBack();
+			}
+			
+			//3、编写一个删除函数
+			function del(obj){
+				//传入的obj其实为a，a的父节点是td，td的父节点是tr，需要通过tr的父节点table来对tr进行删除
+				var tr = obj.parentNode.parentNode;
+				tr.parentNode.removeChild(tr);
+			}
+		</script>
+	</head>
+	<body onload="changeBack()" mpa-version="4.6.10" mpa-extension-id="ibefaeehajgcpooopoegkifhgecigeeg">
+		<table border="1" width="400" id="tab">
+			<tbody><tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>xh001</td>
+				<td>王晓明</td>
+				<td>
+					<a href="javascript:;" onclick="del(this)">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>xh002</td>
+				<td>刘小芳</td>
+				<td>
+					<a href="javascript:;" onclick="del(this)">删除</a>
+				</td>
+			</tr>
+		</tbody></table>
+		<input type="button" value="添加一行" onclick="add()">
+	
+
+<div class="mpa-sc account-switcher" data-z="100" style="display: block;"></div><div class="mpa-sc article-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-article-gatherer"></div><div class="mpa-sc image-gatherer new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-image-gatherer"></div><div class="mpa-sc page-clipper new mpa-rootsc" data-z="100" style="display: block;" id="mpa-rootsc-page-clipper"></div><div class="mpa-sc notifier new mpa-rootsc" data-z="110" style="display: block;" id="mpa-rootsc-notifier"></div></body></html>

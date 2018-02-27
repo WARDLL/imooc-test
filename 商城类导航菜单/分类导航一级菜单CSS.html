@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+
+        .topmenu {
+            display: block;
+            width: 220px;
+            border: 2px solid #e4393c;
+            padding: 0
+        }
+
+        .toptitle {
+            height: 40px;
+            line-height: 40px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: #e4393c;
+            padding-left: 20px;
+        }
+
+        .topmenu li {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            list-style-type: none;
+            text-align: left;
+            padding-left: 8px;
+            z-index: 3;
+            background-image: url(images/箭头.png);
+            /* 设置如何平铺对象的 background-image 属性。 */
+            background-repeat: no-repeat;
+            background-position: right
+        }
+
+        .topmenu li a {
+            /* 去除下划线 */
+            text-decoration: none;
+            color: #313131
+        }
+
+        .topmenu li a:hover {
+            text-decoration: underline;
+            font-weight: bold;
+            color: #e4393c
+        }
+
+        .topmenu li:hover {
+            border: 1px solid #ddd;
+            /* 去掉右侧边框 */
+            border-right: 0;
+            /* 外发光 */
+            box-shadow: 0 0 8px #ddd;
+            /* 火狐 */
+            -moz-box-shadow: 0 0 8px #ddd;
+            /* chrome */
+            -webkit-box-shadow: 0 0 8px #ddd;
+            background-image: none;
+        }
+
+        .submenu {
+            display: none;
+            width: 710px;
+            left: 220px;
+            position: absolute;
+            margin-top: -31px;
+            border: 1px solid #ddd;
+            z-index: 4;
+            background: white;
+            box-shadow: 0 0 8px #ddd;
+            /* 火狐 */
+            -moz-box-shadow: 0 0 8px #ddd;
+            /* chrome */
+            -webkit-box-shadow: 0 0 8px #ddd;
+        }
+
+        .leftdiv {
+            float: left;
+            width: 490px;
+            margin: 5px;
+        }
+
+        .rightdiv {
+            float: left;
+            width: 200px;
+            margin: 5px;
+        }
+
+        .topmenu li:hover .submenu {
+            display: block
+        }
+
+        .topmenu li:hover span {
+            background: white;
+            display: inline-block;
+            z-index: 20;
+            margin-right: 5px;
+            width: 10px;
+            height: 30px;
+            float: right;
+            position: relative;
+        }
+
+        .leftdiv dl {
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+            overflow: hidden;
+        }
+
+        .leftdiv dt {
+            display: block;
+            float: left;
+            width: 60px;
+            text-align: right;
+            height: 22px;
+            line-height: 22px;
+            padding-right: 6px;
+        }
+
+        .leftdiv dl dt a {
+            color: #e4393c;
+            font-weight: bold;
+            text-decoration: underline;
+            font: 16px;
+        }
+
+        .leftdiv dl dd {
+            display: block;
+            overflow: hidden
+        }
+
+        .leftdiv dl dd a {
+            display: block;
+            float: left;
+            border-left: 1px solid #ccc;
+            color: #737373;
+            font-size: 14px;
+            padding: 0px 8px;
+            height: 14px;
+            line-height: 14px;
+            margin: 4px 0px;
+        }
+        .rightdiv dl dd{
+            margin: 3px 15px;
+        }
+        .rightdiv dl dt{
+            margin: 3px 15px;
+            color: #e4393c;
+            font-weight: bold;
+            font: 14px;
+        }
+        .rightdiv dl dd a{
+            font-size: 12px;
+            color: #737373;
+            line-height: 22px;
+        }
+        .rightdiv dl dd a:hover{
+            color: #737373;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="topmenu">
+        <div class="toptitle">全部商品分类</div>
+        <li>
+            <a href="#">家用电器</a>
+            <span></span>
+            <div class="submenu">
+                <div class="leftdiv">
+                    <dl>
+                        <dt>
+                            <a href="#">电视</a>
+                        </dt>
+                        <dd>
+                            <a href="#">曲面电视</a>
+                            <a href="#">超薄电视</a>
+                            <a href="#">HDR电视</a>
+                            <a href="#">OLED电视</a>
+                            <a href="#">4K超清电视</a>
+                            <a href="#">人工智能电视</a>
+                            <a href="#">55英寸</a>
+                            <a href="#">65英寸</a>
+                            <a href="#">电视配件</a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="rightdiv">
+                    <dl>
+                        <dd>
+                            <a href="#">
+                                <img src="images/rightdiv-1-up.jpg">
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="#">
+                                <img src="images/rightdiv-1-down.jpg">
+                            </a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            推荐品牌
+                        </dt>
+                        <dd>
+                            <a href="#">美的官方旗舰店</a>
+                        </dd>
+                        <dd>
+                            <a href="#">海尔官方旗舰店</a>
+                        </dd>
+                        <dd>
+                            <a href="#">格力官方旗舰店</a>
+                        </dd>
+                        <dd>
+                            <a href="#">海信官方旗舰店</a>
+                        </dd>
+                        <dd>
+                            <a href="#">松下官方旗舰店</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#">手机/运营商/数码</a>
+        </li>
+        <li>
+            <a href="#">电脑/办公</a>
+        </li>
+        <li>
+            <a href="#">家居/家具/家装/厨具</a>
+        </li>
+        <li>
+            <a href="#">男装/女装/童装/内衣</a>
+        </li>
+        <li>
+            <a href="#">美肤个护/宠物</a>
+        </li>
+        <li>
+            <a href="#">女鞋/箱包/钟表/珠宝</a>
+        </li>
+        <li>
+            <a href="#">男鞋/运动/户外</a>
+        </li>
+        <li>
+            <a href="#">房产/汽车/汽车用品</a>
+        </li>
+        <li>
+            <a href="#">母婴/玩具乐器</a>
+        </li>
+        <li>
+            <a href="#">食品/酒类/生鲜/特产</a>
+        </li>
+        <li>
+            <a href="#">艺术/礼品鲜花/农资绿植</a>
+        </li>
+        <li>
+            <a href="#">医药保健/计生情趣</a>
+        </li>
+        <li>
+            <a href="#">图书/音像/电子书</a>
+        </li>
+    </ul>
+</body>
+
+</html>

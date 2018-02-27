@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #move {
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            width: 400px;
+            height: 230px;
+        }
+
+        #up,
+        #down {
+            width: 220px;
+            height: 100px;
+            margin: 0 auto
+        }
+
+        #move a {
+            width: 30px;
+            display: inline-block;
+            color: #cccccc;
+            text-decoration: none;
+            margin: 20px;
+            text-align: center;
+            height: 51px;
+        }
+
+        #move a:hover {
+            color: red
+        }
+
+        #move a i {
+            font-size: 30px;
+            height: 30px;
+            display: inline-block;
+            position: relative;
+            filter: alpha(opacity=100);
+            opacity: 1
+        }
+    </style>
+
+    <script src="JS/move.js"></script>
+    <script>
+        window.onload = function () {
+            var oMove = document.getElementById('move'),
+                aList = oMove.getElementsByTagName('a');
+
+                for(var i=0;i<aList.length;i++){
+                    aList[i].onmouseover=function(){
+                        //取标签，获取第一个i标签
+                        var oThis=this.getElementsByTagName('i')[0];
+                        //让当前的图标做运动，并继续执行回调函数（链式运动）
+                        startMove(oThis,{top:-20,opacity:0},function(){
+                            // 链式运动前，固定下位置，使其动画效果从下往上运动
+                            oThis.style.top=30+'px'
+                            startMove(oThis,{top:0,opacity:100})
+                        })
+                    }
+                }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="move">
+        <div id="up">
+            <a href="#">
+                <i>
+                    <img src="images/个人中心.png">
+                </i>
+                <p>个人中心</p>
+            </a>
+            <a href="#">
+                <i>
+                    <img src="images/收藏中心.png">
+                </i>
+                <p>收藏中心</p>
+            </a>
+            <a href="#">
+                <i>
+                    <img src="images/设置中心.png">
+                </i>
+                <p>设置中心</p>
+            </a>
+        </div>
+        <div id="down">
+            <a href="#">
+                <i>
+                    <img src="images/我的位置.png">
+                </i>
+                <p>我的位置</p>
+            </a>
+            <a href="#">
+                <i>
+                    <img src="images/我的素材.png">
+                </i>
+                <p>我的素材</p>
+            </a>
+            <a href="#">
+                <i>
+                    <img src="images/订单中心.png">
+                </i>
+                <p>订单中心</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

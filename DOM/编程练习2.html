@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>下拉菜单</title>
+    <style type="text/css">
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        #divselect {
+            width: 186px;
+            margin: 80px auto;
+            position: relative;
+            z-index: 10000;
+        }
+
+        #divselect cite {
+            width: 150px;
+            height: 24px;
+            line-height: 24px;
+            display: block;
+            color: #807a62;
+            cursor: pointer;
+            font-style: normal;
+            padding-left: 4px;
+            padding-right: 30px;
+            border: 1px solid #333333;
+            background: url(xjt.png) no-repeat right center;
+        }
+
+        #divselect ul {
+            width: 184px;
+            border: 1px solid #333333;
+            background-color: #ffffff;
+            position: absolute;
+            z-index: 20000;
+            margin-top: -1px;
+            display: none;
+        }
+
+        #divselect ul li {
+            height: 24px;
+            line-height: 24px;
+        }
+
+        #divselect ul li a {
+            display: block;
+            height: 24px;
+            color: #333333;
+            text-decoration: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box = document.getElementById('divselect'),
+                title = box.getElementsByTagName('cite')[0],
+                menu = box.getElementsByTagName('ul')[0],
+                as = box.getElementsByTagName('a'),
+                index = -1;
+
+            // 点击三角时
+            title.onclick = function (event) {
+                // 执行脚本
+            }
+
+            // 滑过滑过、离开、点击每个选项时
+            // 执行脚本
+
+            // 点击页面空白处时
+            // 执行脚本
+        }
+    </script>
+</head>
+
+<body>
+    <div id="divselect">
+        <cite>请选择分类</cite>
+        <ul>
+            <li id="li">
+                <a href="javascript:;" selectid="1">ASP开发</a>
+            </li>
+            <li>
+                <a href="javascript:;" selectid="2">.NET开发</a>
+            </li>
+            <li>
+                <a href="javascript:;" selectid="3">PHP开发</a>
+            </li>
+            <li>
+                <a href="javascript:;" selectid="4">Javascript开发</a>
+            </li>
+            <li>
+                <a href="javascript:;" selectid="5">Java特效</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+<!--一、 点击菜单中的向下三角展开菜单
+
+ 
+
+提示:
+     1、点击三角时需阻止事件冒泡
+
+二、 展开菜单之后，在document对象上绑定keyup事件,按下向下方向键，选中下一个选项，按下向上方向键，选中上一个选项，按下回车键菜单收起，显示选中项
+
+ 
+
+提示:
+1、 声明一个全局的index变量初值为-1
+2、 按下向下方向键时index递增，当递增至大于等于菜单选项的总数时恢复为0
+3、 按下向上方向键时判断index，如若小于等于0则设为菜单选项的总数，之后递减index
+4、 根据index值将对应的选项设为当前（灰色背景）
+5、 按下回车键时将对应选中的选项设为菜单标题，且将所有选项设为无背景，index恢复为-1，菜单收起
+注意：没有任何选项被选中时，按下回车键不做任何操作
+
+ 
+
+三、鼠标滑过每个选项时高亮显示，离开时去掉背景，点击高亮选项时菜单标题改变
+
+ 
+
+提示:
+   1.遍历所有a标签，绑定鼠标点击的事件
+注意：要考虑到浏览器兼容，使用innerHTML，不要使用innerText
+
+ 
+
+四、点击页面空白处收起菜单
+
+ 
+
+提示:
+   1.绑定在document对象上
+-->

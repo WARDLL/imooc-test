@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: relative;
+            left: -200px;
+            top: 0
+        }
+
+        #box span {
+            width: 20px;
+            height: 50px;
+            background: #ccc;
+            position: absolute;
+            left: 200px;
+            top: 75px;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var box = document.getElementById('box')
+            box.onmouseover = function () {
+                startMove(0)
+            }
+            box.onmouseout = function () {
+                startMove(-200)
+            }
+        }
+
+        var timer = null
+
+        function startMove(iTarget) {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                //缓冲运动
+                var speed=(iTarget-box.offsetLeft)/20
+                //如果速度大于0（右移）数值向上取整，否则向下取整
+                speed=speed>0?Math.ceil(speed):Math.floor(speed)
+                //必须加else
+                if (box.offsetLeft == iTarget) {
+                    clearInterval(timer);
+                } else {
+                    box.style.left = box.offsetLeft + speed + 'px'
+                }
+            }, 30)
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <span id="share">分享</span>
+    </div>
+</body>
+
+</html>
