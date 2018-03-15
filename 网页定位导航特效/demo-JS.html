@@ -360,15 +360,54 @@
     </div>
 
     <script>
-        function getByClassName(obj,cls){
-            var elements=obj.getElementsByTagName('*')
+        // 根据className获取元素
+        function getByClassName(obj, cls) {
+            // 获取content下所有的DOM元素
+            var elements = obj.getElementsByTagName('*');
+            var result = [];
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].className == cls) {
+                    result.push(elements[i]);
+                }
+            }
+            return result
         }
-        window.onscroll=function(){
+        window.onscroll = function () {
             // 获取正确的scrollTop值
-            var top=document.documentElement?document.documentElement.scroll:document.body.scrollTop;
+            var top = document.documentElement ? document.documentElement.scroll : document.body.scrollTop;
             // 获取所有menu下面的a元素
-            var menu=document.getElementById('menu').getElementsByTagName('a');
-            var item=document.getElementById('content')
+            var menus = document.getElementById('menu').getElementsByTagName('a');
+            var items = getByClassName(document.getElementById('content'), 'item');
+            var currentId = '';
+
+            for (var i = 0; i < items.length; i++) {
+                var _item = items[i];
+                var _itemTop = _item.offset;
+                if (top > _itemTop - 200) {
+                    currentId = _item.id;
+                } else {
+                    // 跳出for循环
+                    break;
+                }
+            }
+
+            if (currentId) {
+                // 给正确的menu下的a元素class赋值
+                for (var j = 0; j < menus; j++) {
+                    var _menu = menus[j];
+                    // _menu.href会获得一串网址，需要拆分
+                    var _herf = _menu.href.split('#');
+                    // 获取这个数组最后一个元素
+                    // 最后一个元素是否和currentId相等
+                    // 如果不相等就去除
+                    if (_herf[_herf.length - 1] != currentId) {
+                        _menu.removeClass('current');
+                        // 相等就添加
+                    } else{
+                        _menu.addClass('current')
+                    }
+                }
+            }
         }
     </script>
 </body>

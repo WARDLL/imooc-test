@@ -375,7 +375,7 @@
                 var itemTop = m.offset().top;
                 // 当滚动条高度大于item高度时，说明已经错过
                 // -200px是为了更好的用户体验
-                if (top > itemTop-200) {
+                if (top > itemTop - 200) {
                     currentId = '#' + m.attr('id');
                 } else {
                     // 返回 false 可用于及早停止循环
@@ -387,7 +387,7 @@
             // 当所在链接为楼层时，不需要删除其他链接的类名
             if (currentId && currentLink.attr('herf') != currentId) {
                 currentLink.removeClass('current');
-                menu.find("[href='"+currentId+"']" ).addClass("current");
+                menu.find("[href='" + currentId + "']").addClass("current");
             }
         })
     </script>
