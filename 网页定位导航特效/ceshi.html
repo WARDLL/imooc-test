@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>网页定位导航特效</title>
+    <title>网页定位导航</title>
     <style>
         * {
             margin: 0;
-            padding: 0;
+            padding: 0
         }
 
         body {
@@ -28,20 +26,19 @@
         }
 
         #content h1 {
-            color: #fa6f2e;
+            color: #0088bb;
         }
 
         #content .item {
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px dotted #fa6f2e;
+            border: 1px dotted #0088bb;
         }
 
         #content h2 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
-            border-bottom: 2px solid #fa6f2e;
-            margin-bottom: 10px;
+            border-bottom: 2px solid #0088bb;
         }
 
         #content .item li {
@@ -60,7 +57,7 @@
             top: 100px;
             left: 50%;
             margin-left: 400px;
-            width: 80%;
+            width: 80px;
         }
 
         #menu ul li a {
@@ -79,9 +76,52 @@
         #menu ul li a:hover,
         #menu ul li a.current {
             color: #fff;
-            background: #fa6f2e;
+            background: #0088bb;
         }
     </style>
+    <script>
+        function getByClassName(obj, cls) {
+            var elements = obj.getElementsByTagName("*");
+            var result = [];
+            for (var i = 0; i < elements.length; i++) {
+                if (elements[i].className == cls) {
+                    result.push(elements[i]);
+                }
+            }
+            return result;
+        }
+        window.onload = function () {
+            window.onscroll = function () {
+                var top = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body
+                    .scrollTop;
+                var menus = document.getElementById("menu").getElementsByTagName("a");
+                var items = getByClassName(document.getElementById("content"), "item");
+                var currentId = "";
+
+                for (var j = 0; j < items.length; j++) {
+                    var m = items[j];
+                    var itemTop = m.offsetTop;
+                    if (top > itemTop - 300) {
+                        currentId = m.id;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (currentId) {
+                    for (var k = 0; k < menus.length; k++) {
+                        var n = menus[k];
+                        var _href = n.href.split("#");
+                        if (_href[_href.length - 1] != currentId) {
+                            n.className = "";
+                        } else {
+                            n.className = "current";
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -104,7 +144,6 @@
             </li>
         </ul>
     </div>
-
     <div id="content">
         <h1>购物网</h1>
         <div id="item1" class="item">
@@ -358,81 +397,7 @@
             </ul>
         </div>
     </div>
-
-    <script>
-        // 根据className获取元素
-        function getByClassName(obj, cls) {
-            // 获取content下所有的DOM元素
-            var elements = obj.getElementsByTagName('*');
-            var result = [];
-            for (var i = 0; i < elements.length; i++) {
-                if (elements[i].className == cls) {
-                    result.push(elements[i]);
-                }
-            }
-            return result
-        }
-        // 先判断有没有这么一个class，如果有就移除，如果没有就不必移除了。
-        function hasClass(obj, cls) {
-            // 正则表达式校验
-            return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-        }
-
-        function removeClass(obj, cls) {
-            // 如果有
-            if (hasClass(obj, cls)) {
-                // 正则表达式替换
-                var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-                // 如果有，则将class替换为空
-                obj.className = obj.className.replace(reg, '')
-            }
-        }
-
-        function addClass(obj, cls) {
-            // 如果这个元素没有class
-            if (!hasClass(obj, cls)) {
-                obj.className += ' ' + cls;
-            }
-        }
-
-        window.onscroll = function () {
-            // 获取正确的scrollTop值
-            var top = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
-            // 获取所有menu下面的a元素
-            var menus = document.getElementById('menu').getElementsByTagName('a');
-            var items = getByClassName(document.getElementById('content'), 'item');
-            var currentId = '';
-
-            for (var i = 0; i < items.length; i++) {
-                var _item = items[i];
-                var _itemTop = _item.offsetTop;
-                if (top > _itemTop - 200) {
-                    currentId = _item.id;
-                } else {
-                    // 跳出for循环
-                    break;
-                }
-            }
-
-            if (currentId) {
-                // 给正确的menu下的a元素class赋值
-                for (var j = 0; j < menus.length; j++) {
-                    var _menu = menus[j];
-                    // _menu.href会获得一串网址，需要拆分
-                    var _herf = _menu.href.split('#');
-                    // 获取这个数组最后一个元素
-                    // 最后一个元素是否和currentId相等
-                    // 如果不相等就去除
-                    if (_herf[_herf.length - 1] != currentId) {
-                        removeClass(_menu, 'current');
-                        // 相等就添加
-                    } else {
-                        addClass(_menu, 'current')
-                    }
-                }
-            }
-        }
-    </script>
+    </div>
 </body>
 
 </html>
