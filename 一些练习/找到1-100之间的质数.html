@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>找到1-100之间的质数</title>
+</head>
+<body>
+    <script>
+        // 标识符
+        var flag=0;
+
+        for(var i=1;i<100;i++){
+            for(var j=2;j<i;j++){
+                if(i%j==0){
+                    flag=1
+                    break;
+                }else{
+                    flag=0
+                }
+            }
+            if(flag==0&&i!=1){
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>
